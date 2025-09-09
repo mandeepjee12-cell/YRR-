@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Bestie Quiz 💖</title>
+  <style>
+    body {
+      margin:0;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      background: linear-gradient(135deg, #ffb6ec, #ffdde1);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      height:100vh;
+      padding:20px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 25px;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 8px 20px rgba(255, 105, 180, 0.3);
+      text-align: center;
+      animation: pop 0.4s ease;
+    }
+    @keyframes pop {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    h1 {
+      color: #ff4da6;
+      font-size: 22px;
+      margin-bottom: 15px;
+    }
+    .question {
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: #444;
+    }
+    .btns {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+    button {
+      padding: 10px 18px;
+      border: none;
+      border-radius: 25px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    button:active {
+      transform: scale(0.9);
+    }
+    .yes {
+      background: linear-gradient(90deg,#12cc69,#629410);
+      color: white;
+    }
+    .no {
+      background: #ffe4f0;
+      color: #ff4da6;
+    }
+    .result {
+      font-size: 20px;
+      margin-top: 15px;
+      color: #ff4da6;
+      font-weight: bold;
+      display:none;
+    }
+    .hearts {
+      font-size: 30px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>💖 Bestie testing Quiz 💖</h1>
+    <div id="quiz">
+      <p class="question" id="qText">Loading...</p>
+      <div class="btns">
+        <button class="yes" id="yesBtn">Yes 💕</button>
+        <button class="no" id="noBtn">No 🙈</button>
+      </div>
+    </div>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    const questions = [
+      " tu meri asli bestie hai na? 🤭",
+      "to i love u baby bolegi na ? 🥺",
+      "tu chahati hai me terse bat karu ? ✌️",
+      "to fir kuch sawalo ke jawab de .degi na ? 😅",
+      "hum dono ki vibe sabse alag aur special haina ? 😏😁",
+      "to tu mujhe chocolate khilaegi ? 🍫",
+      "sirf mujhe special treatement degi baki sabko normal  ? 😂",
+      "Aur sabse imp – kya tu mujhe love karti hai thoda sa ? 💖"
+    ];
+
+    let index = 0, noCount = 0;
+    const qText = document.getElementById("qText");
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const result = document.getElementById("result");
+
+    function showQ(){
+      if(index < questions.length){
+        qText.textContent = questions[index];
+      } else {
+        finish();
+      }
+    }
+
+    function finish(){
+      document.getElementById("quiz").style.display = "none";
+      result.style.display = "block";
+      if(noCount === questions.length){
+        result.innerHTML = `Koi ni bestie 😅<br>Par I LOVE U 💖<div class="hearts">💕💕💕</div>`;
+      } else {
+        result.innerHTML = `Hehe kitne cute answers  terse naraz hona is impossible 😍<br>Bestie forever (MERI JAN HAI TU)! <div class="hearts">💖💖💖</div>`;
+      }
+    }
+
+    yesBtn.onclick = () => { index++; showQ(); }
+    noBtn.onclick = () => { noCount++; index++; showQ(); }
+
+    showQ();
+  </script>
+</body>
+</html>
